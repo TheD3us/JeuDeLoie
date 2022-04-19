@@ -2,8 +2,8 @@ package bo;
 
 public class CaseSansEffet extends Case{
 
-	public CaseSansEffet(int numeroCase) {
-		super(numeroCase);
+	public CaseSansEffet(int numeroCase, PlateauJeu plateauJeu) {
+		super(numeroCase, plateauJeu);
 		// TODO Auto-generated constructor stub
 	}
 

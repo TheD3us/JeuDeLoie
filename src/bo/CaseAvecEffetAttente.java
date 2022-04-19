@@ -12,8 +12,8 @@ public class CaseAvecEffetAttente extends Case {
 		this.estRejoint = estRejoint;
 	}
 
-	public CaseAvecEffetAttente(int numeroCase, boolean estRejoint) {
-		super(numeroCase);
+	public CaseAvecEffetAttente(int numeroCase, PlateauJeu plateauJeu,boolean estRejoint) {
+		super(numeroCase, plateauJeu);
 		this.estRejoint = estRejoint;
 	}
 

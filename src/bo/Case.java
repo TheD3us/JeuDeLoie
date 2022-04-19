@@ -1,6 +1,6 @@
 package bo;
 
-public abstract class Case {
+public class Case {
 	protected int numeroCase;
 	protected PlateauJeu plateauJeu;
 
@@ -12,10 +12,16 @@ public abstract class Case {
 		this.numeroCase = numeroCase;
 	}
 
-	public Case(int numeroCase) {
+	public Case(int numeroCase, PlateauJeu plateauJeu) {
 		this.numeroCase = numeroCase;
+		this.plateauJeu = plateauJeu;
 	}
 	
-	public abstract void effet(Pion pion);
+	public void effet(Pion pion) {
+		
+	}
 	
+	public void afficher() {
+		System.out.print("| " + numeroCase + " |");
+	}
 }
