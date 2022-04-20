@@ -17,7 +17,7 @@ public class Case {
 		this.plateauJeu = plateauJeu;
 	}
 	
-	public void effet(Pion pion) {
+	public void effet(Pion pion, int ligne, int colonne) {
 		
 	}
 	

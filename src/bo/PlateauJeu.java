@@ -2,6 +2,19 @@ package bo;
 
 public class PlateauJeu {
 	private static Case[][] cases = new Case[8][8];
+	private Pion[] pion;
+
+	public PlateauJeu(Pion[] pion) {
+		this.pion = pion;
+	}
+
+	public Pion[] getPion() {
+		return pion;
+	}
+
+	public void setPion(Pion[] pion) {
+		this.pion = pion;
+	}
 
 	public static Case[][] getCases() {
 		return cases;
@@ -15,10 +28,10 @@ public class PlateauJeu {
 		
 	}
 	
-	public void generationPlateau() {
+	public void generationPlateau(int nbPion) {
 		System.out.println("🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆Plateau Jeu de l'oie🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆");
 		int cote = 8;
-		
+		int position = pion[nbPion].getCaseActuelle().getNumeroCase();
 		int colonneRestante = cote - 1;
 		int ligneRestante = cote - 1;
 		int colonne = 0;
@@ -27,7 +40,7 @@ public class PlateauJeu {
 		char bouge = 'd' ;
 		
 		for(int i = 1; i < cote * cote + 1 ; i++) {
-			cases[ligne][colonne]= new Case(i, this);
+			cases[ligne][colonne]= new Case(i - 1, this);
 
 			switch(bouge) {
 				case 'd':{
@@ -85,6 +98,8 @@ public class PlateauJeu {
 			for(colonne = 0; colonne < cote; colonne++) {
 				if(cases[ligne][colonne].getNumeroCase() < 10) {
 					System.out.print("| " + cases[ligne][colonne].getNumeroCase() + "  |");
+				}else if() {
+					
 				}else {
 				cases[ligne][colonne].afficher();
 				}
@@ -93,6 +108,13 @@ public class PlateauJeu {
 		}
 		
 		
+		
+		
+	}
+	
+	public void afficherPion(int noPion) {
+		
+
 	}
 	
 }

@@ -26,7 +26,7 @@ public class Pion {
 		this.caseActuelle = caseActuelle;
 	}
 	
-	
+
 	
 	
 }

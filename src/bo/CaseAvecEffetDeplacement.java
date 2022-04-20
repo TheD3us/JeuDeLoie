@@ -1,7 +1,7 @@
 package bo;
 
 public class CaseAvecEffetDeplacement extends Case {
-	private int effetCase;
+	
 	
 	public CaseAvecEffetDeplacement(int numeroCase,PlateauJeu plateauJeu) {
 		super(numeroCase, plateauJeu);
@@ -9,8 +9,9 @@ public class CaseAvecEffetDeplacement extends Case {
 	}
 
 	@Override
-	public void effet(Pion pion) {
-		Case[][] cases = plateauJeu.getCases();
+	public void effet(Pion pion, int ligne, int colonne) {
+		Case[][] cases = PlateauJeu.getCases();
+		pion.setCaseActuelle(cases[ligne][colonne]);
 		
 		;
 		
