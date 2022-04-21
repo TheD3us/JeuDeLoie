@@ -6,7 +6,7 @@ public class JeuOie {
 
 	public static void main(String[] args) {
 		PlateauJeu plateau = new PlateauJeu();
-		plateau.generationPlateau();
+		plateau.generationPlateau(2);
 
 	}
 
