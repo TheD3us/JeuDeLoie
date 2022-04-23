@@ -170,22 +170,26 @@ public class PlateauJeu {
 						if(cases[ligne][colonne].getNumeroCase() == noNouvelleCase) {
 								
 								pion[i].setCaseActuelle(cases[ligne][colonne]);
-								ligne = cote;
-								colonne = cote;
-								i= pion.length;
+
 						}
 						else if(63 < noNouvelleCase) {
 							int difference = noNouvelleCase - 63;
-							int doubleDifference = nbCase - difference;
-							deplacementPion(-difference + doubleDifference, pion[i].getNom());
+							for(ligne = 0; ligne < cote; ligne++) {
+								for(colonne = 0; colonne < cote; colonne++) {
+									if(cases[ligne][colonne].getNumeroCase() == (63 - difference)) {
+										pion[i].setCaseActuelle(cases[ligne][colonne]);
 
-							System.out.println(pion[i].getCaseActuelle().getNumeroCase());
+									}
+								}
+						// A voir si on peut optimiser	
+						//	System.out.println(noNouvelleCase);
+						//	System.out.println(pion[i].getCaseActuelle().getNumeroCase());
 							
 						}
 					}
 				}
 			}					
-			
+			}
 		}
 	}
 	
