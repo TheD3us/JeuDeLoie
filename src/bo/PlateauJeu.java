@@ -16,6 +16,18 @@ public class PlateauJeu {
 	public void setPion(Pion[] pion) {
 		this.pion = pion;
 	}
+	// Ici je créer les pions que je met dans un tableau
+	public void generationpion(int nbPion) {
+		pion = new Pion[nbPion];
+		for(int i = 1; i < nbPion + 1; i++) {
+			if(cases[0][0] == null) {
+				System.out.println("Cases non générées");
+			}else {
+				pion[i - 1]= new Pion("J" + i, cases[0][0]);
+			}
+			
+		}
+	}
 
 	public static Case[][] getCases() {
 		return cases;
@@ -29,7 +41,7 @@ public class PlateauJeu {
 		
 	}
 	
-	public void generationPlateau(int nbPion) {
+	public void generationPlateau() {
 		System.out.println("🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆Plateau Jeu de l'oie🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆");
 		int cote = 8;
 		int colonneRestante = cote - 1;
@@ -95,16 +107,40 @@ public class PlateauJeu {
 		
 		
 		}
-		pion = new Pion[nbPion];
-		for(int i = 0; i < nbPion; i++) {
-			pion[i]= new Pion("J" + i, cases[0][0]);
-		}
+		
+		
+		
+
+		
+	}
+	
+	// Je déplace mon pion en additionnant le numéro de la case du pion avec le nombre 
+	// reçu
+	
+	
+	public void afficherPlateau() {
+		int cote = 8;
+		int colonne = 0;
+		int ligne = 0;
+		
+		//j'affiche le plateau de jeu
+		
+		
+		boolean joueurPresent = false;
+
 		for(ligne = 0; ligne < cote; ligne++) {
 			for(colonne = 0; colonne < cote; colonne++) {
-				
-					if(cases[ligne][colonne].getNumeroCase() < 10) {
+				joueurPresent = false;
+					for(int i = 0; i < pion.length; i++) {
+						if(pion[i].getCaseActuelle().equals(cases[ligne][colonne])) {
+							System.out.print("| " + pion[i].getNom() + " |");
+							i = pion.length;
+							joueurPresent = true;
+						}
+					}
+					if(cases[ligne][colonne].getNumeroCase() < 10 && joueurPresent == false) {
 					System.out.print("| " + cases[ligne][colonne].getNumeroCase() + "  |");
-					}else {
+					}else if(joueurPresent == false){
 				cases[ligne][colonne].afficher();
 				}
 			
@@ -112,24 +148,36 @@ public class PlateauJeu {
 			System.out.println("");
 		}
 		
+		System.out.println("");
+		System.out.println("");
 	}
-			
-
-
-	public void positionPion() {
+	
+	
+	public void deplacementPion(int nbCase, String nom) {
 	int cote = 8;
 	int colonne = 0;
 	int ligne = 0;
+	int noNouvelleCase = 0;
 	
 	
-		for(ligne = 0; ligne < cote; ligne++) {
-			for(colonne = 0; colonne < cote; colonne++) {		
-				for(int i = 0; i < pion.length; i++) {
-					if(cases[ligne][colonne].getNumeroCase() == pion[i].getCaseActuelle().getNumeroCase() ) {
-						System.out.print("| " + "J" + i + " |");
+		
+	
+		for(int i = 0; i < pion.length ; i++) {
+			if(pion[i].getNom().equalsIgnoreCase(nom)) {
+				noNouvelleCase = pion[i].getCaseActuelle().getNumeroCase() + nbCase;
+				for(ligne = 0; ligne < cote; ligne++) {
+					for(colonne = 0; colonne < cote; colonne++) {	
+						if(cases[ligne][colonne].getNumeroCase() == noNouvelleCase) {
+								
+								pion[i].setCaseActuelle(cases[ligne][colonne]);
+								ligne = cote;
+								colonne = cote;
+								i= pion.length;
+						}					
 					}
-				}				
-			}
+				}
+			}					
+			
 		}
 	}
 }
