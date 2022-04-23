@@ -3,7 +3,7 @@ package bo;
 public class De {
 	private  static final int nbFace = 6;
 	
-	public static int lancerDeDes() {
+	public int lancerDeDes() {
 		int resultat1 = (int) (Math.random() * nbFace + 1);
 		int resultat2 = (int) (Math.random() * nbFace + 1);
 		int total = resultat1 + resultat2;

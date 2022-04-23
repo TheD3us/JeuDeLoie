@@ -173,12 +173,31 @@ public class PlateauJeu {
 								ligne = cote;
 								colonne = cote;
 								i= pion.length;
-						}					
+						}
+						else if(63 < noNouvelleCase) {
+							int difference = noNouvelleCase - 63;
+							int doubleDifference = nbCase - difference;
+							deplacementPion(-difference + doubleDifference, pion[i].getNom());
+
+							System.out.println(pion[i].getCaseActuelle().getNumeroCase());
+							
+						}
 					}
 				}
 			}					
 			
 		}
+	}
+	
+	public boolean verifierVictoire() {
+		boolean gagner = false;
+		for(int i = 0; i < pion.length; i++) {
+			if(pion[i].getCaseActuelle().getNumeroCase() == 63) {
+				gagner = true;
+				System.out.println(pion[i].getNom() + " à gagné");
+			}
+		}
+		return gagner;
 	}
 }
 	
