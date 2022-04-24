@@ -29,11 +29,11 @@ public class PlateauJeu {
 		}
 	}
 
-	public static Case[][] getCases() {
+	public Case[][] getCases() {
 		return cases;
 	}
 
-	public static void setCases(Case[][] cases) {
+	public void setCases(Case[][] cases) {
 		PlateauJeu.cases = cases;
 	}
 
@@ -54,7 +54,7 @@ public class PlateauJeu {
 
 		
 		for(int i = 1; i < cote * cote + 1 ; i++) {
-			cases[ligne][colonne]= new Case(i - 1, this);
+			cases[ligne][colonne]= new CaseSansEffet(i - 1, this);
 
 			switch(bouge) {
 				case 'd':{
@@ -107,11 +107,28 @@ public class PlateauJeu {
 		
 		
 		}
+		ajoutOie();
 		
 		
 		
 
 		
+	}
+	
+	public void ajoutOie() {
+		int cote = 8;
+		int colonne = 0;
+		int ligne = 0;
+		
+		for(ligne = 0; ligne < cote; ligne++) {
+			for(colonne = 0; colonne < cote; colonne++) {
+				if(cases[ligne][colonne].getNumeroCase() % 9 == 0) {
+					cases[ligne][colonne].setSymboleCase("O ");
+					int numero = cases[ligne][colonne].getNumeroCase();
+					cases[ligne][colonne] = new CaseOie(numero, this);
+				}
+			}
+			}
 	}
 	
 	// Je déplace mon pion en additionnant le numéro de la case du pion avec le nombre 
@@ -138,7 +155,10 @@ public class PlateauJeu {
 							joueurPresent = true;
 						}
 					}
-					if(cases[ligne][colonne].getNumeroCase() < 10 && joueurPresent == false) {
+					if(cases[ligne][colonne].getNumeroCase() % 9 == 0 && joueurPresent == false) {
+						System.out.print("| " + cases[ligne][colonne].getSymboleCase() + " |");
+					}
+					else if(cases[ligne][colonne].getNumeroCase() < 10 && joueurPresent == false) {
 					System.out.print("| " + cases[ligne][colonne].getNumeroCase() + "  |");
 					}else if(joueurPresent == false){
 				cases[ligne][colonne].afficher();
@@ -168,6 +188,9 @@ public class PlateauJeu {
 				for(ligne = 0; ligne < cote; ligne++) {
 					for(colonne = 0; colonne < cote; colonne++) {	
 						if(cases[ligne][colonne].getNumeroCase() == noNouvelleCase) {
+							if(cases[ligne][colonne] instanceof CaseOie) {
+								// j en suis ici;
+							}
 								
 								pion[i].setCaseActuelle(cases[ligne][colonne]);
 
