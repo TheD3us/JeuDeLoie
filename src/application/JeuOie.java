@@ -21,7 +21,7 @@ public class JeuOie {
 		System.out.println("Joueur 1, êtes vous prêt à lancer les dés ? o/n");
 		String choix = sc.nextLine();
 		if(choix.equalsIgnoreCase("o")) {
-			plateau.deplacementPion(de.lancerDeDes(), "J1");
+			plateau.deplacementPion(de.lancerDeDes(), "J1", false);
 			plateau.afficherPlateau();
 			
 		}
@@ -32,7 +32,7 @@ public class JeuOie {
 		System.out.println("Joueur 2, êtes vous prêt à lancer les dés ? o/n");
 		choix = sc.nextLine();
 		if(choix.equalsIgnoreCase("o")) {
-			plateau.deplacementPion(de.lancerDeDes(), "J2");
+			plateau.deplacementPion(de.lancerDeDes(), "J2", false);
 			plateau.afficherPlateau();
 			
 		}

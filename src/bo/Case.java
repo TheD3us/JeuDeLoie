@@ -33,6 +33,10 @@ public class Case {
 		
 	}
 	
+	public void effetDeplacement(Pion pion, Case caseEffet) {
+		
+	}
+	
 	public void afficher() {
 		System.out.print("| " + numeroCase + " |");
 	}

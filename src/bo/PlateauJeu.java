@@ -36,6 +36,12 @@ public class PlateauJeu {
 	public void setCases(Case[][] cases) {
 		PlateauJeu.cases = cases;
 	}
+	
+	public void generationCaseEffetDeplacement() {
+		cases[0][6] = new CaseAvecEffetDeplacement(6, this, "Pont");
+		cases[6][2] = new CaseAvecEffetDeplacement(42, this,  "Labyrinthe");
+		cases[4][2] = new CaseAvecEffetDeplacement(58, this, " Tête de MOOOOOOORT");
+	}
 
 	public PlateauJeu() {
 		
@@ -103,6 +109,7 @@ public class PlateauJeu {
 			}	
 		}
 		ajoutOie();	
+		generationCaseEffetDeplacement();
 	}
 	
 	public void ajoutOie() {
@@ -165,7 +172,7 @@ public class PlateauJeu {
 	}
 	
 	
-	public void deplacementPion(int nbCase, String nom) {
+	public void deplacementPion(int nbCase, String nom, boolean caseOieAvant) {
 	int cote = 8;
 	int colonne = 0;
 	int ligne = 0;
@@ -180,11 +187,23 @@ public class PlateauJeu {
 				for(ligne = 0; ligne < cote; ligne++) {
 					for(colonne = 0; colonne < cote; colonne++) {	
 						if(cases[ligne][colonne].getNumeroCase() == noNouvelleCase) {
-							if(cases[ligne][colonne] instanceof CaseOie) {
+							if(cases[ligne][colonne] instanceof CaseOie && caseOieAvant == false) {
 								pion[i].setCaseActuelle(cases[ligne][colonne]);
+								System.out.println("Vous êtes tombé sur une oie !");
 								cases[ligne][colonne].effet(pion[i], nbCase);
+								System.out.println("On avance d'autant de cases que notre score");
 								i = pion.length;
-							}else {
+							}else if(noNouvelleCase == 6){
+								
+								cases[ligne][colonne].effetDeplacement(pion[i], cases[5][7]);
+							}else if (noNouvelleCase == 42){
+								cases[ligne][colonne].effetDeplacement(pion[i], cases[1][3]);
+							}else if(noNouvelleCase == 58){
+								cases[ligne][colonne].effetDeplacement(pion[i], cases[0][0]);
+							}
+								else {
+							
+							
 								pion[i].setCaseActuelle(cases[ligne][colonne]);
 							}
 						}

@@ -18,7 +18,7 @@ public class CaseAvecEffetAttente extends Case {
 	}
 
 	@Override
-	public void effet(Pion pion, int ligne, int colonne) {
+	public void effet(Pion pion, int nbrCase) {
 		
 	}
 
