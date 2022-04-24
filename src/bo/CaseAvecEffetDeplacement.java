@@ -9,8 +9,11 @@ public class CaseAvecEffetDeplacement extends Case {
 	}
 
 	@Override
-	public void effet(Pion pion, int ligne, int colonne) {
+	public void effet(Pion pion, int nbrCase) {
 		Case[][] cases = plateauJeu.getCases();
+		int cote = 8;
+		int colonne = 0;
+		int ligne = 0;
 		pion.setCaseActuelle(cases[ligne][colonne]);
 		
 		;

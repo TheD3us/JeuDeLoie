@@ -8,7 +8,7 @@ public class CaseSansEffet extends Case{
 	}
 
 	@Override
-	public void effet(Pion pion, int ligne, int colonne) {
+	public void effet(Pion pion, int nbrCase) {
 		System.out.println("Vous êtes sur la case " + getNumeroCase());
 		
 	}

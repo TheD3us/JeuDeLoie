@@ -99,20 +99,10 @@ public class PlateauJeu {
 						bouge = 'g';
 						break;
 					}
-					
-				}
-				
-			}
-		
-		
-		
+				}	
+			}	
 		}
-		ajoutOie();
-		
-		
-		
-
-		
+		ajoutOie();	
 	}
 	
 	public void ajoutOie() {
@@ -122,13 +112,15 @@ public class PlateauJeu {
 		
 		for(ligne = 0; ligne < cote; ligne++) {
 			for(colonne = 0; colonne < cote; colonne++) {
-				if(cases[ligne][colonne].getNumeroCase() % 9 == 0) {
-					cases[ligne][colonne].setSymboleCase("O ");
+				if(cases[ligne][colonne].getNumeroCase() % 9 == 0 && cases[ligne][colonne].getNumeroCase() != 63) {
 					int numero = cases[ligne][colonne].getNumeroCase();
 					cases[ligne][colonne] = new CaseOie(numero, this);
+					cases[ligne][colonne].setSymboleCase("Oie");
+					
+					
 				}
 			}
-			}
+		}
 	}
 	
 	// Je déplace mon pion en additionnant le numéro de la case du pion avec le nombre 
@@ -155,8 +147,8 @@ public class PlateauJeu {
 							joueurPresent = true;
 						}
 					}
-					if(cases[ligne][colonne].getNumeroCase() % 9 == 0 && joueurPresent == false) {
-						System.out.print("| " + cases[ligne][colonne].getSymboleCase() + " |");
+					if(cases[ligne][colonne].getNumeroCase() % 9 == 0 &&cases[ligne][colonne].getNumeroCase() != 63 && joueurPresent == false) {
+						System.out.print("|" + cases[ligne][colonne].getSymboleCase() + " |");
 					}
 					else if(cases[ligne][colonne].getNumeroCase() < 10 && joueurPresent == false) {
 					System.out.print("| " + cases[ligne][colonne].getNumeroCase() + "  |");
@@ -189,11 +181,12 @@ public class PlateauJeu {
 					for(colonne = 0; colonne < cote; colonne++) {	
 						if(cases[ligne][colonne].getNumeroCase() == noNouvelleCase) {
 							if(cases[ligne][colonne] instanceof CaseOie) {
-								// j en suis ici;
-							}
-								
 								pion[i].setCaseActuelle(cases[ligne][colonne]);
-
+								cases[ligne][colonne].effet(pion[i], nbCase);
+								i = pion.length;
+							}else {
+								pion[i].setCaseActuelle(cases[ligne][colonne]);
+							}
 						}
 						else if(63 < noNouvelleCase) {
 							int difference = noNouvelleCase - 63;

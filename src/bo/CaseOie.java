@@ -1,6 +1,6 @@
 package bo;
 
-public class CaseOie extends Case {
+public class CaseOie extends CaseSansEffet {
 
 	public CaseOie(int numeroCase, PlateauJeu plateauJeu) {
 		super(numeroCase, plateauJeu);
@@ -27,7 +27,7 @@ public class CaseOie extends Case {
 				for(colonne = 0; colonne < cote; colonne++) {
 					if(cases[ligne][colonne].getNumeroCase() == (63 - difference)) {
 						pion.setCaseActuelle(cases[ligne][colonne]);
-
+						System.out.println("On se déplace d'autant de cases que l'on a joué");
 					}
 				}
 		// A voir si on peut optimiser	
