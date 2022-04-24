@@ -2,6 +2,7 @@ package bo;
 
 public class CaseAvecEffetAttente extends Case {
 	private boolean estRejoint;
+	private String nomCase;
 	
 	
 	public boolean isEstRejoint() {
@@ -12,13 +13,19 @@ public class CaseAvecEffetAttente extends Case {
 		this.estRejoint = estRejoint;
 	}
 
-	public CaseAvecEffetAttente(int numeroCase, PlateauJeu plateauJeu,boolean estRejoint) {
+	public CaseAvecEffetAttente(int numeroCase, PlateauJeu plateauJeu, String nomCase) {
 		super(numeroCase, plateauJeu);
-		this.estRejoint = estRejoint;
+		this.nomCase = nomCase;
+
 	}
 
 	@Override
-	public void effet(Pion pion, int nbrCase) {
+	public void effet(Pion pion, int nbrTour) {
+		System.out.println("Vous êtes tombé sur " + nomCase);
+		pion.setPasseTour(true);
+		if(nbrTour > 0) {
+			pion.setCompteur(nbrTour);
+		}
 		
 	}
 

@@ -11,7 +11,7 @@ public class JeuOie {
 		Scanner sc = new Scanner(System.in);
 		PlateauJeu plateau = new PlateauJeu();
 		De de = new De();
-
+		
 		plateau.generationPlateau();
 		plateau.generationpion(2);
 		plateau.afficherPlateau();

@@ -29,7 +29,7 @@ public class CaseAvecEffetDeplacement extends Case {
 	
 	@Override
 	public void effetDeplacement(Pion pion, Case caseEffet) {
-		System.out.println("Vous êtes tombé sur " + getNomCase());
+		System.out.println("Vous êtes tombé sur " + nomCase);
 		pion.setCaseActuelle(caseEffet);
 	}
 

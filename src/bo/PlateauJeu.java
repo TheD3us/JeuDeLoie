@@ -42,6 +42,12 @@ public class PlateauJeu {
 		cases[6][2] = new CaseAvecEffetDeplacement(42, this,  "Labyrinthe");
 		cases[4][2] = new CaseAvecEffetDeplacement(58, this, " Tête de MOOOOOOORT");
 	}
+	
+	public void generationCaseEffetAttente() {
+		cases[7][2] = new CaseAvecEffetAttente(19, this, "Hôtel");
+		cases[1][4] = new CaseAvecEffetAttente(31, this, "Puits");
+		cases[3][5] = new CaseAvecEffetAttente(52, this, "Prison");
+	}
 
 	public PlateauJeu() {
 		
@@ -110,6 +116,7 @@ public class PlateauJeu {
 		}
 		ajoutOie();	
 		generationCaseEffetDeplacement();
+		generationCaseEffetAttente();
 	}
 	
 	public void ajoutOie() {
@@ -130,8 +137,7 @@ public class PlateauJeu {
 		}
 	}
 	
-	// Je déplace mon pion en additionnant le numéro de la case du pion avec le nombre 
-	// reçu
+
 	
 	
 	public void afficherPlateau() {
@@ -154,7 +160,7 @@ public class PlateauJeu {
 							joueurPresent = true;
 						}
 					}
-					if(cases[ligne][colonne].getNumeroCase() % 9 == 0 &&cases[ligne][colonne].getNumeroCase() != 63 && joueurPresent == false) {
+					if(cases[ligne][colonne].getNumeroCase() % 9 == 0 && cases[ligne][colonne].getNumeroCase() != 63 &&cases[ligne][colonne].getNumeroCase() != 0 && joueurPresent == false) {
 						System.out.print("|" + cases[ligne][colonne].getSymboleCase() + " |");
 					}
 					else if(cases[ligne][colonne].getNumeroCase() < 10 && joueurPresent == false) {
@@ -182,7 +188,10 @@ public class PlateauJeu {
 		
 	
 		for(int i = 0; i < pion.length ; i++) {
-			if(pion[i].getNom().equalsIgnoreCase(nom)) {
+			if(pion[i].getCompteur() == 0 && pion[i].getCaseActuelle().getNumeroCase() != 31 && pion[i].getCaseActuelle().getNumeroCase() != 52 ) {
+				pion[i].setPasseTour(false);
+			}
+			if(pion[i].getNom().equalsIgnoreCase(nom) && pion[i].isPasseTour() == false) {
 				noNouvelleCase = pion[i].getCaseActuelle().getNumeroCase() + nbCase;
 				for(ligne = 0; ligne < cote; ligne++) {
 					for(colonne = 0; colonne < cote; colonne++) {	
@@ -200,6 +209,12 @@ public class PlateauJeu {
 								cases[ligne][colonne].effetDeplacement(pion[i], cases[1][3]);
 							}else if(noNouvelleCase == 58){
 								cases[ligne][colonne].effetDeplacement(pion[i], cases[0][0]);
+							}else if(noNouvelleCase == 19) {
+								pion[i].setCaseActuelle(cases[ligne][colonne]);
+								cases[ligne][colonne].effet(pion[i], 2);
+							}else if(noNouvelleCase == 31 || noNouvelleCase == 52) {
+								pion[i].setCaseActuelle(cases[ligne][colonne]);
+								cases[ligne][colonne].effet(pion[i], 0);
 							}
 								else {
 							
@@ -224,6 +239,18 @@ public class PlateauJeu {
 					}
 				}
 			}					
+			}else if(pion[i].getNom().equalsIgnoreCase(nom) && pion[i].isPasseTour() == true) {
+				if((pion[i].getCaseActuelle().getNumeroCase() == 31 || pion[i].getCaseActuelle().getNumeroCase() == 52)) {
+					for(int j = 0; j < pion.length; j++) {
+						if(pion[i].getCaseActuelle().getNumeroCase() == pion[j].getCaseActuelle().getNumeroCase() && !pion[i].getNom().equals(pion[j].getNom())) {
+							pion[i].setPasseTour(false);
+						}
+					}
+					
+				}else {
+				System.out.println("Vous devez passer votre tour");
+				pion[i].setCompteur(pion[i].getCompteur() - 1);
+				}
 			}
 		}
 	}
